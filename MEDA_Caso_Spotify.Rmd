@@ -1,0 +1,211 @@
+---
+title: "MEDA - Case: 1.2MM Spotify songs"
+author: "Assistant Professor Iván Mendivelso"
+output: pdf_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F, eval=T)
+```
+
+# Purpose
+
+Exploratory Data Analysis (EDA) is an important stage in generating knowledge from data. This activity is thought of as applying some concepts learned in the first part of the course. You should be able to make summaries, plots, and interpret them correctly. Also, proposing original analysis is a plus.
+
+# About Dataset
+
+## Context
+
+
+```{r echo=TRUE, eval=TRUE}
+df_spotify <- data.table::fread('~/Downloads/tracks_features.csv',
+                                stringsAsFactors = TRUE)
+```
+
+The Spotify API offers a rich source of data on its songs and their physical characteristics^[The dataset is taken from Kaggle at <https://www.kaggle.com/datasets/rodolfofigueroa/spotify-12m-songs)>]. The dataset includes a wide range of variables, such as `id`, `name`, `album`, `album_id`, `artists, artist_ids, track_number, disc_number, explicit,` `danceability`, `energy`, `key`, `loudness`, `mode`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence`, `tempo`, `duration_ms`, `time_signature`, `year`, and `release_date`. Each of these variables plays a unique role in shaping a song's overall composition and emotional impact.
+
+The `id` variable provides a unique identifier for each song, while the `name` variable indicates the name of the song. The `album` variable provides the name of the album the song is from, and the `album_id` variable provides a unique identifier for that album. The `artists` variable lists the artist or artists that performed the song, while the `artist_ids` variable provides unique identifiers for those artists.
+
+The `track_number` variable lists the order in which the song appears on its album, while the `disc_number` variable lists the disc number on which the song appears (in the case of multi-disc albums). The `explicit` variable indicates whether the song contains explicit content, which could be used to classify different types of audience.
+
+The variables `danceability`, `energy`, `key`, `loudness`, `mode`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence`, and `tempo` are all measures of the song's physical characteristics, including its rhythm, melody, and tonality. These variables can be used to gain insight into the overall mood and emotional impact of the song.
+
+The `duration_ms` variable indicates the length of the song in milliseconds, while the `time_signature` variable provides information on the song's time signature (e.g., 4/4, 3/4). The `year` variable lists the year in which the song was released, while the `release_date` variable provides more detailed information on the song's release date.
+
+While the dataset is rich in variables, it is important to note that it does not include each song's popularity. This variable is of particular interest to those looking to analyze a song's overall success or impact. As a result, careful cleaning and detailed exploratory data analysis are necessary to better understand the underlying relationships and structures within the dataset.
+
+# The data
+
+The next arrange shows a glimpse of the dataset:
+
+```{r eval=TRUE}
+library(tidyverse)
+library(lubridate)
+library(patchwork)
+library(extrafont)
+font_import()
+
+glimpse(df_spotify)
+```
+
+# Challenge
+
+Build a report and tell a story based on the given 1.2 million songs, utilizing the skills you have acquired through this course or your professional experience. Set hypothesis: Ask yourself questions that the available data could answer. Utilize summary statistics, plots, dashboards, web applications, or any reporting tool you consider appropriate. Encourage creativity in your approach. If you are unsure about how to define a target, label or response variable in a supervised learning algorithm, consider using `explicit` as the dependent variable for making predictions.
+
+
+```{r}
+########################################
+# Questions
+
+# Which variables are correlated?
+# Which ones influence the variable "explicit"?
+# How is the distribution of the songs per album
+# Does "explicit" relate to which variables? Does
+# it have sense?
+# How is "explicit" related to qualitative variables like
+# "key", "mode" and "time_signature"?
+
+########################################
+
+
+```
+
+
+
+
+```{r}
+## Canciones por año
+df_spotify_2 <- df_spotify %>%
+  mutate(decade=case_when(
+    year >= 1900 & year < 1910 ~ "1900's",
+    year >= 1910 & year < 1920 ~ "1910's",
+    year >= 1920 & year < 1930 ~ "1920's",
+    year >= 1930 & year < 1940 ~ "1930's",
+    year >= 1940 & year < 1950 ~ "1940's",
+    year >= 1950 & year < 1960 ~ "1950's",
+    year >= 1960 & year < 1970 ~ "1960's",
+    year >= 1970 & year < 1980 ~ "1970's",
+    year >= 1980 & year < 1990 ~ "1980's",
+    year >= 1990 & year < 2000 ~ "1990's",
+    year >= 2000 & year < 2010 ~ "2000's",
+    year >= 2010 & year < 2020 ~ "2010's",
+    year >= 2020  ~ "2020's",
+    TRUE ~ NA_character_ 
+  ),
+  release = ymd(release_date))
+
+tabla <- df_spotify_2 %>%
+  group_by(decade)%>%
+  summarise(n=n(),
+            year_min=min(year),
+            year_max=max(year))%>%
+  mutate(decade=decade,
+            n_decade=n,
+            avg_dcd_songs_per_year=round(n/(year_max-year_min+1),1))%>%
+  filter(!is.na(decade))
+
+tabla%>%
+  knitr::kable()
+```
+
+
+```{r}
+tabla_1 <- tabla %>%
+  pivot_longer(c("n_decade", "avg_dcd_songs_per_year"),
+               names_to = "Variable",
+               values_to = "n_songs")
+```
+
+
+```{r}
+g1 <- ggplot(tabla_1, aes(decade,
+                          n_songs,
+                          group=Variable,
+                          col=Variable,
+                          linetype=Variable)) +
+  geom_line(alpha=0.7) +
+  geom_point(aes(decade, n_songs, shape=Variable, col=Variable)) +
+  ggtitle("The most of the songs in dataset are new") +
+  labs(caption="Source: 1.2 million songs dataset from Spotify API") +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1))+
+  geom_text(data=tabla_1[22,], aes(decade, 
+                                   n_songs+5e4, 
+                                   label="In 2020's decade \n there are only \n songs from 2020"),
+            col='darkgreen',
+            size=2) 
+
+g1
+```
+
+
+```{r}
+#####
+# So let's focus on 2020. 
+# Later we will do some trend graphics 
+# to compare with information we already have.
+
+spotify_2015_plus <- df_spotify_2 %>%
+  filter(year>=2015)
+dim(spotify_2015_plus)
+
+```
+
+```{r}
+spotify_2015_plus %>%
+  glimpse
+```
+
+```{r}
+spotify_2015_plus %>%
+  count(explicit) %>%
+  mutate(p=n/sum(n))
+
+spotify_2015_plus %>%
+  group_by(year) %>%
+  summarise(n=n(),
+            explicit=sum(explicit)) %>%
+  ungroup() %>%
+  mutate(p_explicit=explicit/n) %>%
+  ggplot(aes(year, p_explicit)) +
+  geom_col(col="white") +
+  labs(title="Current rising of explicit lyrics in songs")
+
+```
+
+```{r}
+###########################################################
+###########################################################
+# Resumir variables a nivel artista
+###########################################################
+###########################################################
+
+per_artist <- spotify_2015_plus %>%
+  group_by(artists) %>%
+  summarise(n=n())
+
+a1 <- per_artist %>%
+  ggplot(aes(n)) +
+  geom_bar() +
+  labs(title='Very few artists have more than 40 songs',
+       x="Songs per artist",
+       y="Number of artsts",
+       caption="Songs from 2015 up to 2020")
+
+a2 <- per_artist %>%
+  ggplot(aes(n)) +
+  geom_bar() +
+  xlim(c(0, 30)) +
+    labs(x="Songs per artist",
+       y="Number of artsts")
+a1/a2
+  
+per_artist %>%
+  arrange(desc(n)) %>%
+  glimpse
+```
+
+```{r}
+
+```
+
