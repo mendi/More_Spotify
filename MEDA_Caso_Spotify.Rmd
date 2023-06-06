@@ -42,9 +42,7 @@ The next arrange shows a glimpse of the dataset:
 library(tidyverse)
 library(lubridate)
 library(patchwork)
-library(extrafont)
-font_import()
-
+library(ggridges)
 glimpse(df_spotify)
 ```
 
@@ -205,7 +203,174 @@ per_artist %>%
   glimpse
 ```
 
-```{r}
+## Análisis univariado por década
 
+### `Danceability`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(danceability, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 2.5)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g1 <- df_spotify_2 %>%
+  ggplot(aes(danceability, y=..density.., fill=decade)) +
+  geom_histogram(position="fill")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(danceability, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g1+g2
 ```
 
+### `Energy`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(energy, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 2.5)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g1 <- df_spotify_2 %>%
+  ggplot(aes(energy, y=..density.., fill=decade)) +
+  geom_histogram(position="fill")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(energy, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g1
+g2
+```
+
+### `Loudness`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(loudness, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.15)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(loudness, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+### `Speechiness`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(speechiness, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(speechiness, y=decade, fill=decade)) +
+  geom_density_ridges() +
+    xlim(c(0, 0.3)) +
+  theme(legend.position = "none")
+g2
+```
+
+### `Acousticness`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(acousticness, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(acousticness, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+### `Instrumentalness`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(instrumentalness, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(instrumentalness, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+
+### `liveness`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(liveness, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(liveness, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+### `Valence`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(valence, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(valence, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+### `Tempo`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(tempo, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(tempo, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
+
+
+### `Duration`
+
+```{r}
+df_spotify_2 %>%
+  ggplot(aes(duration_ms, y=..density..)) +
+  geom_histogram() +
+  ylim(c(0, 0.25)) +
+  facet_wrap(vars(decade)) +
+  ggtitle("En 2020 hay mayor asimetría")
+g2 <- df_spotify_2 %>%
+  ggplot(aes(duration_ms, y=decade, fill=decade)) +
+  geom_density_ridges() +
+  theme(legend.position = "none")
+g2
+```
