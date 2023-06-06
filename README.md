@@ -1,2 +1,2 @@
 # More_Spotify
-A Spotify songs dataset was available in Kaggle. 1.2 million songs, suitable for clasification, dimensionreduction, data cleaning, data wrangling, etc.
+A Spotify's songs dataset is (was?) available at Kaggle: <<https://www.kaggle.com/datasets/rodolfofigueroa/spotify-12m-songs)>>. 1.2 million songs that, for its variables configuration (there are both types of variables: nominal as well as qualitative) and a massive set of analysis possibilities, is suitable for clasification, dimension reduction, data cleaning, data wrangling, data viz, etc. The .rmd file contains a pdf text source code from an exercise I assigned to my students in a data science master. 
