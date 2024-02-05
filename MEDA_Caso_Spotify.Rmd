@@ -221,7 +221,9 @@ g2 <- df_spotify_2 %>%
   ggplot(aes(danceability, y=decade, fill=decade)) +
   geom_density_ridges() +
   theme(legend.position = "none")
-g1+g2
+g1
+
+g2
 ```
 
 ### `Energy`
@@ -376,3 +378,8 @@ g2 <- df_spotify_2 %>%
   xlim(c(0,1e6))
 g2
 ```
+
+
+## Not available data
+
+Not available data are located in the `release_date` variable, however as have been seen before, the missing data reflects a particular behavior in relation to variables like `danceability`, `` 
