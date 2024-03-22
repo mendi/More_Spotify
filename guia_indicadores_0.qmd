@@ -1,0 +1,95 @@
+---
+title: "Indicadores"
+author: "Hanwen Zhang"
+format: pdf
+editor: visual
+---
+
+# Guía básica de indicadores
+
+El índice de precios al consumidor (IPC) es un indicador que mide el cambio promedio en los precios de una canasta de bienes y servicios que los hogares urbanos adquieren para su consumo. También lo es la tasa de crecimiento económico, que refleja el aumento porcentual del producto interno bruto (PIB) de un país de un año a otro, proporcionando una visión clara de cómo está expandiéndose o contrayéndose la economía. La proporción de la población con acceso a internet es otro indicador crucial, revelando el nivel de digitalización y conectividad de una sociedad, lo cual tiene implicaciones directas en la educación, el comercio, y la inclusión digital.
+
+Además, la razón entre el número de médicos y el total de la población es una métrica importante, ya que indica la disponibilidad de atención médica para los ciudadanos, reflejando la capacidad del sistema de salud para atender las necesidades de la población. La tasa de participación laboral, que muestra el porcentaje de la población en edad de trabajar que está empleada o buscando empleo, es esencial para comprender la dinámica del mercado laboral y la economía en general.
+
+Monitorear estos indicadores permite a los formuladores de políticas, investigadores y analistas obtener una comprensión profunda de los diversos aspectos del desarrollo socioeconómico y bienestar de la población, así como identificar áreas prioritarias para la intervención y el mejoramiento de las condiciones de vida y económicas del país.
+
+Un listado de los que quizá se encuentran de manera más frecuente son:
+
+* Totales
+* Proporciones
+* Razones 
+* Promedios
+* Variaciones
+
+El objetivo de este texto es proveer una lectura introductoria a la definición y cálculo de indicadores, lo que incluirá de paso su fórmula de cálculo.
+
+## Totales
+
+Suma de valores o elementos en un conjunto de datos.
+
+$$\text{Total}=\sum_{i=1}^ny_i$$
+
+Aquí la $y_i$ representa la cantidad observada en el individuo $i$ dentro de un conjunto de $n$ datos.
+
+## Ejemplos
+
+* Total de ingresos de una empresa.
+* Total de estudiantes matriculados en una universidad.
+
+## Proporción
+
+Una proporción indica la relación de una parte con el todo, expresada comúnmente en porcentajes.
+
+$$\text{Proporción}=\frac{\text{Parte}}{\text{Total}} \times 100$$
+
+## Ejemplos
+
+* Porcentaje de población desempleada.
+* Porcentaje de cobertura de vacunación.
+
+
+## Razones
+
+Una razón compara dos cantidades, mostrando cuántas veces una cantidad está contenida en la otra.
+
+$$\text{Razón}=\frac{\text{Cantidad 1}}{\text{Cantidad 2}}$$
+
+### Ejemplos
+
+* **Razón de masculinidad al nacer:** Este indicador se refiere al número de nacimientos de niños por cada nacimiento de niñas en una población específica. Generalmente, en condiciones naturales, esta razón es ligeramente superior a 1, típicamente alrededor de 1.05 a 1.07, lo que significa que nacen aproximadamente 105 a 107 niños por cada 100 niñas.
+
+* **Razón de vehículos por hogar:** Este indicador refleja el número promedio de vehículos disponibles por hogar en una región específica. En muchas áreas suburbanas y rurales de países desarrollados, es común que esta razón sea mayor que 1, evidenciando que los hogares tienen más de un vehículo disponible para su uso.
+
+## Promedios
+
+Un promedio es una medida resumen de tendencia general de los datos, es una de las medidas de centralidad de un conjunto de datos junto con la mediana y la moda.
+
+$$\mu=\frac{1}{N}\sum_{i=1}^Ny_i$$
+
+En este caso los valores de $y_i$ indican las cantidades observadas que se encuentran en el conjunto de datos, mientras que $N$ indica el número de datos.
+
+### Ejemplos
+
+* **Promedio de Ingresos Anuales:** Calcula el ingreso medio que reciben las personas, familias o hogares en un año dentro de una región o país específico. Se obtiene sumando todos los ingresos y dividiendo el total por el número de personas, familias u hogares, según sea el caso.
+
+
+* **Promedio de Temperatura Mensual:** Refiere a la temperatura media calculada para un mes específico en un lugar determinado. Se calcula sumando las temperaturas diarias registradas a lo largo del mes y dividiendo por el número de días del mes.
+
+## Variaciones
+
+Cálculos que miden el grado de cambio o fluctuación en alguna determinada cifra o cantidad a lo largo del tiempo o del espacio.
+
+$$\text{Variación}=(\frac{\text{Cantidad final}}{\text{Cantidad inicial}} -1) \times 100$$
+
+* **Índice de precios al consumidor:** Es una medida del cambio (variación), en el precio de bienes y servicios representativos del consumo de los hogares del país conocido como canasta (DANE). El IPC de un país al final del año era de 108 puntos, y al inicio del año era de 104 puntos. La tasa de cambio en el IPC se calcula para entender la inflación:
+
+$$\text{Variación IPC}=\frac{108-104}{108} \times 100=3.7\%$$
+
+### Ejemplos
+
+* **Tasa de Crecimiento Anual de la Población:** Si la población de un país era de 1,000,000 de habitantes al inicio del año 2020 y de 1,020,000 al final del año 2020, la tasa de crecimiento anual se calcula como sigue:
+
+$$\frac{1020000-1000000}{1000000} \times 100 = 2\%$$
+Este resultado indica que la población creció un 2% durante el año 2020.
+
+
