@@ -1,11 +1,9 @@
 ---
-title: "Indicadores"
+title: "Guía Básica de Indicadores"
 author: "Hanwen Zhang"
 format: pdf
 editor: visual
 ---
-
-# Guía básica de indicadores
 
 El índice de precios al consumidor (IPC) es un indicador que mide el cambio promedio en los precios de una canasta de bienes y servicios que los hogares urbanos adquieren para su consumo. También lo es la tasa de crecimiento económico, que refleja el aumento porcentual del producto interno bruto (PIB) de un país de un año a otro, proporcionando una visión clara de cómo está expandiéndose o contrayéndose la economía. La proporción de la población con acceso a internet es otro indicador crucial, revelando el nivel de digitalización y conectividad de una sociedad, lo cual tiene implicaciones directas en la educación, el comercio, y la inclusión digital.
 
@@ -29,7 +27,7 @@ Suma de valores o elementos en un conjunto de datos.
 
 $$\text{Total}=\sum_{i=1}^ny_i$$
 
-Aquí la $y_i$ representa la cantidad observada en el individuo $i$ dentro de un conjunto de $n$ datos.
+Aquí la $y_i$ representa la cantidad observada en el individuo $i$ dentro de un conjunto de $n$ datos, con $i$ tomando valores entre 1 y $n$.
 
 ## Ejemplos
 
@@ -50,13 +48,13 @@ $$\text{Proporción}=\frac{\text{Parte}}{\text{Total}} \times 100$$
 
 ## Razones
 
-Una razón compara dos cantidades, mostrando cuántas veces una cantidad está contenida en la otra.
+Una razón compara dos cantidades, mostrando cuántas veces una cantidad está contenida en la otra. A diferencia de las proporciones, las cantidades de la fracción en la fórmula descrita a continuación, pueden estar en diferentes unidades.
 
 $$\text{Razón}=\frac{\text{Cantidad 1}}{\text{Cantidad 2}}$$
 
 ### Ejemplos
 
-* **Razón de masculinidad al nacer:** Este indicador se refiere al número de nacimientos de niños por cada nacimiento de niñas en una población específica. Generalmente, en condiciones naturales, esta razón es ligeramente superior a 1, típicamente alrededor de 1.05 a 1.07, lo que significa que nacen aproximadamente 105 a 107 niños por cada 100 niñas.
+* **Razón de masculinidad al nacer:** Este indicador se refiere al número de nacimientos de niños por cada nacimiento de niñas en una población específica. Si el indicador de esta razón es de 1.07, significa que nacen aproximadamente 105 niños por cada 100 niñas.
 
 * **Razón de vehículos por hogar:** Este indicador refleja el número promedio de vehículos disponibles por hogar en una región específica. En muchas áreas suburbanas y rurales de países desarrollados, es común que esta razón sea mayor que 1, evidenciando que los hogares tienen más de un vehículo disponible para su uso.
 
@@ -66,7 +64,7 @@ Un promedio es una medida resumen de tendencia general de los datos, es una de l
 
 $$\mu=\frac{1}{N}\sum_{i=1}^Ny_i$$
 
-En este caso los valores de $y_i$ indican las cantidades observadas que se encuentran en el conjunto de datos, mientras que $N$ indica el número de datos.
+En este caso los valores de $y_i$ indican las cantidades observadas que se encuentran en el conjunto de datos, mientras que $N$ indica el número de datos, $i=1,2,..., N$.
 
 ### Ejemplos
 
